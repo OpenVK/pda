@@ -1,0 +1,35 @@
+{extends "../@layout.xml"}
+
+{block title}{_"groups"} {$user->getCanonicalName()}{/block}
+
+{block body}
+    <div class="header">{_"groups"} {$user->getCanonicalName()}</div>
+    <div class="tabs" n:if="!is_null($thisUser) && $user->getId() === $thisUser->getId()">
+        <a href="/groups{$user->getId()}" n:attr="class => (!$admin ? 'activetab' : 'ki')">{_groups}</a>
+        <a href="/groups{$user->getId()}?act=managed" n:attr="class => ($admin ? 'activetab' : 'ki')">{_managed}</a>
+    </div>
+    <div class="pad">
+        {var iterator = $user->getClubs($page, $admin)}
+        {var count    = $user->getClubCount($admin)}
+
+        {var data = is_array($iterator) ? $iterator : iterator_to_array($iterator)}
+        
+        {if sizeof($data) > 0}
+            <div class="profileMenu">
+                <div class="menuItem" n:foreach="$data as $group">
+                    <a href="{$group->getURL()}">
+                        {$group->getName()}
+                    </a>
+                </div>
+            </div>
+        {else}
+            {_no_data}
+        {/if}
+        {include "../components/paginator.xml", conf => (object) [
+            "page"     => $page,
+            "count"    => $count,
+            "amount"   => sizeof($data),
+            "perPage"  => $perPage ?? OPENVK_DEFAULT_PER_PAGE
+        ]}
+    </div>
+{/block}

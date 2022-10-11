@@ -1,0 +1,10 @@
+{extends "../@layout.xml"}
+
+{block title}Регистрация{/block}
+
+{block body}
+    <div class="pad">
+                
+        Для регистрации в {php echo OPENVK_ROOT_CONF['openvk']['appearance']['name']} зайдите в полную версию сайта с вашего домашнего компьютера.<br />
+    </div>
+{/block}

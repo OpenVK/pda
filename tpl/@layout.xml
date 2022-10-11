@@ -1,0 +1,26 @@
+{var $instance_name = OPENVK_ROOT_CONF['openvk']['appearance']['name']}
+<html xmlns="http://www.w3.org/1999/xhtml">
+    <head>
+
+        <meta http-equiv="content-type" content="application/xhtml+xml; charset=utf-8" />
+        <meta name="MobileOptimized" content="176" />
+        <title>{$instance_name}{ifset title} | {include title} {/ifset}</title>
+        <link rel="stylesheet" href="/themepack/pda/0.0.1.0/stylesheet/styles.css?v={time()}" type="text/css" />
+    </head>
+    <body>
+        <div id="bighead">
+            <a href="/">
+                <img alt="{$instance_name}" src="/themepack/pda/0.0.1.0/resource/xhead.jpg" height="22" />
+            </a>
+        </div>
+        <div id="content">
+            {ifset $flashMessage}
+            <div id="msg">
+                {$flashMessage->title}<br /><br />
+                {$flashMessage->msg|noescape}
+            </div>
+            {/ifset}
+            {include body}
+        </div>
+    </body>
+</html>

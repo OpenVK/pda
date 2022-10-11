@@ -1,0 +1,16 @@
+id: pda
+version: "0.0.1.0"
+openvk_version: 0
+enabled: 1
+
+override_templates: true
+inherits_master: true
+
+metadata:
+    name:
+        _: "OpenVK PDA"
+        en: "OpenVK PDA"
+        ru: "OpenVK для кнопочников"
+    author: "OpenVK Team"
+    description: "Мобильная версия OpenVK для кнопочников"
+    

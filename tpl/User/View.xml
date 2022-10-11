@@ -1,0 +1,127 @@
+{extends "../@layout.xml"}
+
+{block title}{$user->getCanonicalName()}{/block}
+
+{block body}
+    <div class="header">{$user->getCanonicalName()}</div>
+    <div class="pad">
+        <table width="100%" cellspacing="2" cellpadding="2" border="0" bgcolor="#FFFFFF">
+            <tbody>
+                <tr>
+                    <td align="left">
+                        <table cellspacing="2" cellpadding="2" border="0">
+                            <tbody>
+                                <tr>
+                                    <th align="left">
+                                        <div class="pphoto">
+                                            <img src="{$user->getAvatarUrl('miniscule')}" alt="{_avatar}" width="75">
+                                        </div>
+                                    </th>
+                                    <td align="left" valign="top">
+                                        {if $user->isOnline()}
+                                            <b>{_online}</b>
+                                        {else}
+                                            <i><b>{$user->isFemale() ? tr("was_online_f") : tr("was_online_m")} {$user->getOnline()}</b></i>
+                                        {/if} <br />
+                                        {$user->getStatus()} 
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+
+        <div class="flexHeader">{_information}</div>
+        <div class="profileMenu">
+            <div class="menuItem">
+                <small>{_gender}</small><br />
+                {$user->isFemale() ? tr("female") : tr("male")}
+            </div>
+            <div class="menuItem">
+                <small>{_relationship}</small><br />
+                {$user->getLocalizedMaritalStatus()}
+            </div>
+            <div class="menuItem">
+                <small>{_registration_date}</small><br />
+                {$user->getRegistrationTime()}
+            </div>
+            <div class="menuItem">
+                <small>{_hometown}</small><br />
+                {$user->getHometown()}
+            </div>
+            <div class="menuItem">
+                <small>{_politViews}</small><br />
+                {var $pviews = $user->getPoliticalViews()}{_"politViews_$pviews"}
+            </div>
+            <div class="menuItem">
+                <small>{_birth_date}</small><br />
+                {var $pviews = $user->getPoliticalViews()}{_"politViews_$pviews"}
+            </div>
+            <div class="menuItem">
+                <small>{_politViews}</small><br />
+                <span n:if="$user->getBirthdayPrivacy() == 0">
+                    {$user->getBirthday()->format('%e %B %Y')}, {tr("years", $user->getAge())}
+                </span>
+                <span n:if="$user->getBirthdayPrivacy() == 1">
+                    {$user->getBirthday()->format('%e %B')}
+                </span>
+            </div>
+            <div class="menuItem">
+                <small>{_about}</small><br />
+                {$user->getDescription()}
+            </div>
+        </div>
+        <div class="flexHeader">{_main}</div>
+        <div class="profileMenu">
+            <div class="menuItem" n:if="$user->getFriendsCount() > 0 && $user->getPrivacyPermission('friends.read', $thisUser ?? NULL)">
+                <a href="/wall{$user->getId()}">
+                    {_wall}
+                </a>
+            </div>
+            <div class="menuItem" n:if="$user->getFriendsCount() > 0 && $user->getPrivacyPermission('friends.read', $thisUser ?? NULL)">
+                <a href="/friends{$user->getId()}">
+                    {_friends}
+                    <b>({$user->getFriendsCount()})</b>
+                </a>
+            </div>
+            <div class="menuItem" n:if="$user->getFriendsCount() > 0">
+                <a href="/friends{$user->getId()}?act=incoming">
+                    {_followers}
+                    <b>({$user->getFollowersCount()})</b>
+                </a>
+            </div>
+            <div class="menuItem" n:if="$user->getClubCount() > 0 && $user->getPrivacyPermission('groups.read', $thisUser ?? NULL)">
+                <a href="/groups{$user->getId()}">
+                    {_groups}
+                    <b>({$user->getClubCount()})</b>
+                </a>
+            </div>
+            <div class="menuItem" n:if="$albumsCount > 0 && $user->getPrivacyPermission('photos.read', $thisUser ?? NULL)">
+                <a href="/albums{$user->getId()}">
+                    {_albums}
+                    <b>({$albumsCount})</b>
+                </a>
+            </div>
+            <div class="menuItem" n:if="$videosCount > 0 && $user->getPrivacyPermission('videos.read', $thisUser ?? NULL)">
+                <a href="/videos{$user->getId()}">
+                    {_videos}
+                    <b>({$videosCount})</b>
+                </a>
+            </div>
+            <div class="menuItem" n:if="$notesCount > 0 && $user->getPrivacyPermission('notes.read', $thisUser ?? NULL)">
+                <a href="/notes{$user->getId()}">
+                    {_notes}
+                    <b>({$notesCount})</b>
+                </a>
+            </div>
+            <div class="menuItem" n:if="OPENVK_ROOT_CONF['openvk']['preferences']['commerce'] && ($giftCount = $user->getGiftCount()) > 0">
+                <a href="/gifts{$user->getId()}">
+                    {_gifts}
+                    <b>({$giftCount})</b>
+                </a>
+            </div>
+        </div>
+    </div>
+{/block}
