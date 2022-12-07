@@ -1,0 +1,18 @@
+{extends "../@layout.xml"}
+
+{block title}{_wall}{/block}
+
+{block body}
+    
+    {if sizeof($posts) > 0}
+        {foreach $posts as $post}
+            <a name="postGarter={$post->getId()}"></a>
+            
+            {include "../components/post.xml", post => $post, commentSection => true}
+        {/foreach}
+        {include "../components/paginator.xml", conf => $paginatorConf}
+    {else}
+        {_no_posts_abstract}
+    {/if}
+
+{/block}

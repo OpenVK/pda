@@ -33,6 +33,39 @@
             </tbody>
         </table>
 
+        {if $user->getId() != $thisUser->getId()}
+            {var $subStatus = $user->getSubscriptionStatus($thisUser)}
+            {if $subStatus === 0}
+                <form action="/setSub/user" method="post">
+                    <input type="hidden" name="act" value="add" />
+                    <input type="hidden" name="id"  value="{$user->getId()}" />
+                    <input type="hidden" name="hash" value="{$csrfToken}" />
+                    <input type="submit" value="{_friends_add}" />
+                </form>
+            {elseif $subStatus === 1}
+                <form action="/setSub/user" method="post">
+                    <input type="hidden" name="act" value="add" />
+                    <input type="hidden" name="id"  value="{$user->getId()}" />
+                    <input type="hidden" name="hash" value="{$csrfToken}" />
+                    <input type="submit" value="{_friends_accept}" />
+                </form>
+            {elseif $subStatus === 2}
+                <form action="/setSub/user" method="post">
+                    <input type="hidden" name="act" value="rem" />
+                    <input type="hidden" name="id"  value="{$user->getId()}" />
+                    <input type="hidden" name="hash" value="{$csrfToken}" />
+                    <input type="submit" value="{_friends_reject}" />
+                </form>
+            {elseif $subStatus === 3}
+                <form action="/setSub/user" method="post">
+                    <input type="hidden" name="act" value="rem" />
+                    <input type="hidden" name="id"  value="{$user->getId()}" />
+                    <input type="hidden" name="hash" value="{$csrfToken}" />
+                    <input type="submit" value="{_friends_delete}" />
+                </form>
+            {/if}
+        {/if}
+
         <div class="flexHeader">{_information}</div>
         <div class="profileMenu">
             <div class="menuItem">
