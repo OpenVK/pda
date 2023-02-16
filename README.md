@@ -13,5 +13,5 @@ Mobile theme for OpenVK for dumbphones, PDAs and old devices at all. Uses old pd
 - [ ] Settings
 - [ ] Notifications
 - [ ] News
-- [ ] Messages
+- [x] Messages (not same as PDA)
 - [ ] Photo albums
