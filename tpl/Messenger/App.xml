@@ -204,8 +204,6 @@
 
                 }
 
-                
-
                 return true;
 
             };
@@ -257,8 +255,6 @@
                 this.prependMessages(messages);
 
             }
-
-            
 
             _setupListener() {
 
@@ -312,15 +308,11 @@
 
             }
 
-            
-
             appendMessages(messages) {
 
                 messages.forEach(m => window.messages.push(m));
 
             }
-
-            
 
             prependMessages(messages) {
 
@@ -344,8 +336,6 @@
 
             }
 
-            
-
             _patchMessage(tempId, message) {
 
                 for(let i = window.messages().length - 1; i > -1; i--) {
@@ -360,8 +350,6 @@
 
                         return;
 
-                    
-
                     window.messages.valueWillMutate();
 
                     window.messages()[i] = message;
@@ -371,8 +359,6 @@
                 }
 
             }
-
-            
 
             _newSelfMessage(content = "...") {
 
@@ -450,13 +436,10 @@
 
                 this.addMessage(msg);
 
-                
-
                 return msg._tuid;
 
             }
 
-            
 
             newReply(content) {
 
@@ -464,13 +447,9 @@
 
                 this.addMessage(msg);
 
-                
-
                 return msg._tuid;
 
             }
-
-            
 
             newReplies(replies) {
 
@@ -478,23 +457,17 @@
 
             }
 
-            
-
             sendMessage(content) {
 
                 console.debug("New outcoming message. Pushing preview to local stack.");
 
                 let tempId = this.newMessage(content);
 
-                
-
                 let msgData = new FormData();
 
                 msgData.set("content", content);
 
                 msgData.set("hash", {$csrfToken});
-
-                
 
                 let that = this;
 
