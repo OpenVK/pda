@@ -44,8 +44,6 @@
 
         </div>
 
-
-
         {if sizeof($corresps) > 0}
 
             <div class="crp-list">
@@ -60,7 +58,6 @@
 
                     {var lastMsg   = $coresp->getPreviewMessage()}
 
-                    
 
                     <div class="crp-entry--image">
 
