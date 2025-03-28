@@ -8,17 +8,10 @@
 <table border="0" style="font-size: 11px;" n:class="post, $post->isExplicit() ? post-nsfw">
     <tbody>
         <tr>
-            <td width="54" valign="top">
-                <a href="{$author->getURL()}">
-                    <img src="{$author->getAvatarURL('miniscule')}" width="50" />
-                    <span n:if="!$post->isPostedOnBehalfOfGroup() && !($compact ?? false) && $author->isOnline()" class="post-online">{_online}</span>
-                </a>
-            </td>
             <td width="100%" valign="top">
                 <div class="post-author">
                     <a href="{$author->getURL()}"><b>{$author->getCanonicalName()}</b></a>
                     <img n:if="$author->isVerified()" class="name-checkmark" src="/assets/packages/static/openvk/img/checkmark.png">
-                    {$post->isDeactivationMessage() ? ($author->isFemale() ? tr($deac . "_f") : tr($deac . "_m")) : ($post->isPostedOnBehalfOfGroup() ? tr("post_writes_g") : ($author->isFemale() ? tr("post_writes_f") : tr("post_writes_m")))}
                     {if ($onWallOf ?? false) &&!$post->isPostedOnBehalfOfGroup() && $post->getOwnerPost() !== $post->getTargetWall()}
                         {var $wallOwner = $post->getWallOwner()}
                         <a href="{$wallOwner->getURL()}" class="mention" data-mention-ref="{$post->getTargetWall()}">
@@ -37,6 +30,7 @@
                     <a href="/wall{$post->getPrettyId()}" class="date">
                         {$post->getPublicationTime()}{if $post->isPinned()}, {_pinned}{/if}
                     </a>
+                    <br><br>
                 </div>
                 <div class="post-content" id="{$post->getPrettyId()}">
                     <div class="text" id="text{$post->getPrettyId()}">
@@ -62,6 +56,7 @@
                         </span>
                     </div>
                 </div>
+                <br>
                 <div n:if="!($compact ?? false)" class="post-menu">
                     {if is_null($thisUser)}
                         {var $forceNoDeleteLink = true}
@@ -88,18 +83,20 @@
                         {/if}
                     </a>
 
-                    {if !($forceNoCommentsLink ?? false) && !($forceNoShareLink ?? false)}
+                    <!-- ебал js --> 
+                    <!-- {if !($forceNoCommentsLink ?? false) && !($forceNoShareLink ?? false)}
                         &nbsp;|&nbsp;
                     {/if}
-                    
+
+                   
                     <a n:if="!($forceNoShareLink ?? false)" class="post-share-button" {ifset $thisUser} href="javascript:repostPost('{$post->getPrettyId()}', '{rawurlencode($csrfToken)}')"{/ifset}>
                         {_share}
                         {if $post->getRepostCount() > 0}
                             (<b>{$post->getRepostCount()}</b>)
                         {/if}
-                    </a>
+                    </a> -->
 
-                    <div n:if="!($forceNoLike ?? false)" class="like_wrap">
+                    <!-- <div n:if="!($forceNoLike ?? false)" class="like_wrap">
                         {ifset $thisUser}
                             {var $liked = $post->hasLikeFrom($thisUser)}
                             <a href="/wall{$post->getPrettyId()}/like?hash={rawurlencode($csrfToken)}" class="post-like-button" data-liked="{(int) $liked}" data-likes="{$post->getLikesCount()}">
@@ -110,11 +107,12 @@
                             <a n:if="$post->getLikesCount() > 0" class="post-like-button">
                                 <div class="heart"></div>
                                 <span class="likeCnt">{$post->getLikesCount()}</span>
-                            </a>
-                        {/ifset}
+                            </a> 
+                        {/ifset}-->
                     </div>
                 </div>
             </td>
         </tr>
     </tbody>
 </table>
+<hr>

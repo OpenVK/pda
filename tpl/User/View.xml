@@ -69,8 +69,8 @@
         <div class="flexHeader">{_information}</div>
         <div class="profileMenu">
             <div class="menuItem">
-                <small>{_gender}</small><br />
-                {$user->isFemale() ? tr("female") : tr("male")}
+                <small>{_pronouns}</small><br />
+                {$user->isFemale() ? tr("female") : ($user->isNeutral() ? tr("neutral") : tr("male"))}
             </div>
             <div class="menuItem">
                 <small>{_relationship}</small><br />
@@ -90,20 +90,12 @@
             </div>
             <div class="menuItem">
                 <small>{_birth_date}</small><br />
-                {var $pviews = $user->getPoliticalViews()}{_"politViews_$pviews"}
-            </div>
-            <div class="menuItem">
-                <small>{_politViews}</small><br />
                 <span n:if="$user->getBirthdayPrivacy() == 0">
                     {$user->getBirthday()->format('%e %B %Y')}, {tr("years", $user->getAge())}
                 </span>
                 <span n:if="$user->getBirthdayPrivacy() == 1">
                     {$user->getBirthday()->format('%e %B')}
                 </span>
-            </div>
-            <div class="menuItem">
-                <small>{_about}</small><br />
-                {$user->getDescription()}
             </div>
         </div>
         <div class="flexHeader">{_main}</div>
@@ -131,16 +123,10 @@
                     <b>({$user->getClubCount()})</b>
                 </a>
             </div>
-            <div class="menuItem" n:if="$albumsCount > 0 && $user->getPrivacyPermission('photos.read', $thisUser ?? NULL)">
-                <a href="/albums{$user->getId()}">
-                    {_albums}
-                    <b>({$albumsCount})</b>
-                </a>
-            </div>
-            <div class="menuItem" n:if="$videosCount > 0 && $user->getPrivacyPermission('videos.read', $thisUser ?? NULL)">
-                <a href="/videos{$user->getId()}">
-                    {_videos}
-                    <b>({$videosCount})</b>
+            <div class="menuItem" n:if="$audiosCount > 0 && $user->getPrivacyPermission('audios.read', $thisUser ?? NULL)">
+                <a href="/audios{$user->getId()}">
+                    {_audios}
+                    <b>({$audiosCount})</b>
                 </a>
             </div>
             <div class="menuItem" n:if="$notesCount > 0 && $user->getPrivacyPermission('notes.read', $thisUser ?? NULL)">
@@ -149,12 +135,9 @@
                     <b>({$notesCount})</b>
                 </a>
             </div>
-            <div class="menuItem" n:if="OPENVK_ROOT_CONF['openvk']['preferences']['commerce'] && ($giftCount = $user->getGiftCount()) > 0">
-                <a href="/gifts{$user->getId()}">
-                    {_gifts}
-                    <b>({$giftCount})</b>
-                </a>
-            </div>
         </div>
     </div>
+
+<!-- цыгане спиздили коня, що це за хуйня.....-->
+
 {/block}

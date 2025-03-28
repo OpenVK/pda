@@ -1,0 +1,75 @@
+{extends "../@layout.xml"}
+
+{block title}{$club->getName()}{/block}
+
+{block body}
+    <div class="header">{$club->getName()}</div>
+    <div class="pad">
+        <table width="100%" cellspacing="2" cellpadding="2" border="0" bgcolor="#FFFFFF">
+            <tbody>
+                <tr>
+                    <td align="left">
+                        <table cellspacing="2" cellpadding="2" border="0">
+                            <tbody>
+                                <tr>
+                                    <th align="left">
+                                        <div class="pphoto">
+                                            <img src="{$club->getAvatarUrl('miniscule')}" alt="{_avatar}" width="75">
+                                        </div>
+                                    </th>
+                                    <td align="left" valign="top">
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+
+        {if $club->getSubscriptionStatus($thisUser) == false}
+            <form action="/setSub/club" method="post">
+                <input type="hidden" name="act" value="add" />
+                <input type="hidden" name="id"  value="{$club->getId()}" />
+                <input type="hidden" name="hash" value="{$csrfToken}" />
+                <input type="submit" value="{_join_community}" />
+            </form>
+        {else}
+            <form action="/setSub/club" method="post">
+                <input type="hidden" name="act" value="rem" />
+                <input type="hidden" name="id"  value="{$club->getId()}" />
+                <input type="hidden" name="hash" value="{$csrfToken}" />
+                <input type="submit" value="{_leave_community}" />
+            </form>
+        {/if}
+
+        <div class="flexHeader">{_information}</div>
+        <div class="profileMenu">
+            <div class="menuItem">
+                <small>{_description}</small><br />
+                {$club->getDescriptionHtml()|noescape}
+            </div>
+            <div class="menuItem" n:if="!is_null($club->getWebsite())">
+                <small>{_website}</small><br />
+                {$club->getWebsite()}
+            </div>
+        </div>
+        <div class="flexHeader">{_main}</div>
+        <div class="profileMenu">
+            <div class="menuItem">
+                <a href="/wall-{$club->getId()}">
+                    {_wall}
+                </a>
+            </div>
+            <div class="menuItem">
+                <a href="/club{$club->getId()}/followers">
+                    {_participants}
+                    <b>({$club->getFollowersCount()})</b>
+                </a>
+            </div>
+        </div>
+    </div>
+
+<!-- цыгане спиздили коня, що це за хуйня.....-->
+
+{/block}

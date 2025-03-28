@@ -3,15 +3,13 @@
 {block title}{_wall}{/block}
 
 {block body}
-    <div class="header">
-        <a href="{$oObj->getURL()}">{$oObj->getCanonicalName()}</a> » {tr("wall", $count)}
-    </div>
+    
     {if sizeof($posts) > 0}
-        <div class='scroll_node' n:foreach='$posts as $post'>
+        {foreach $posts as $post}
             <a name="postGarter={$post->getId()}"></a>
             
             {include "../components/post.xml", post => $post, commentSection => true}
-        </div>
+        {/foreach}
         {include "../components/paginator.xml", conf => $paginatorConf}
     {else}
         {_no_posts_abstract}
