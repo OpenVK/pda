@@ -1,0 +1,17 @@
+{extends "../@layout.xml"}  
+
+{block title}{_select_language}{/block} 
+
+{block body}
+    <div class="header">{_select_language}</div>
+
+    <div class="profileMenu">
+    {foreach $languages as $language}
+        <div class="menuItem">
+            <a href="language?lg={$language['code']}&hash={urlencode($csrfToken)}" rel="nofollow">
+                {$language['native_name']}
+            </a>
+        </div>
+    {/foreach}
+    </div>
+{/block}

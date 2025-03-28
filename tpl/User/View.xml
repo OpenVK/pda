@@ -98,6 +98,21 @@
                 </span>
             </div>
         </div>
+        {if $user->getId() == $thisUser->getId()}
+        <div class="flexHeader">{_menu}</div>
+        <div class="profileMenu">
+            <div class="menuItem">
+                <a href="/feed">
+                    {_feed}
+                </a>
+            </div>
+            <div class="menuItem">
+                <a href="/language">
+                    {_select_language}
+                </a>
+            </div>
+        </div>
+        {/if}
         <div class="flexHeader">{_main}</div>
         <div class="profileMenu">
             <div class="menuItem" n:if="$user->getFriendsCount() > 0 && $user->getPrivacyPermission('friends.read', $thisUser ?? NULL)">
@@ -127,12 +142,6 @@
                 <a href="/audios{$user->getId()}">
                     {_audios}
                     <b>({$audiosCount})</b>
-                </a>
-            </div>
-            <div class="menuItem" n:if="$notesCount > 0 && $user->getPrivacyPermission('notes.read', $thisUser ?? NULL)">
-                <a href="/notes{$user->getId()}">
-                    {_notes}
-                    <b>({$notesCount})</b>
                 </a>
             </div>
         </div>

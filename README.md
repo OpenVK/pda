@@ -3,15 +3,13 @@ Mobile theme for OpenVK for dumbphones, PDAs and old devices at all. Uses old pd
 
 ### What's done?
 
-- [ ] Navigation menu (as separate page)
 - [x] User page
 - [x] Group page
 - [x] Friends list
 - [x] Groups list
+- [x] Audio
 - [x] Wall
 - [ ] Post page
 - [ ] Settings
-- [ ] Notifications
 - [x] News
-- [ ] Messages
-- [ ] Photo albums
+- [x] Language picker

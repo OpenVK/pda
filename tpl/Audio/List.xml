@@ -1,0 +1,38 @@
+{extends "../@layout.xml"}
+
+{block title}{_audios}{/block}
+
+{block body}
+    {var act = $_GET["act"] ?? "friends"}
+
+
+    <div class="header">
+        <div n:if="$isMy">{_my_audios_small}</div>
+        <div n:if="!$isMy">
+            <a href="{$owner->getURL()}">{$owner->getCanonicalName()}</a>
+            »
+            {_audios}
+        </div>
+    </div>
+    <div class="pad">
+        {if $audiosCount > 0}
+            <div class="profileMenu" n:foreach="$audios as $audio">
+                <a href="{$audio->getOriginalURL()}">
+                    {foreach $audio->getPerformers() as $performer}
+                    {$performer}{if $performer != end($audio->getPerformers())}, {/if}
+                    {/foreach} 
+                    — 
+                    {$audio->getTitle()}
+                </a>
+            </div>
+        {else}
+            {_no_data}
+        {/if}
+        {include "../components/paginator.xml", conf => (object) [
+            "page"     => $page,
+            "count"    => $audiosCount,
+            "amount"   => sizeof($audios),
+            "perPage"  => $perPage ?? OPENVK_DEFAULT_PER_PAGE
+        ]}
+    </div>
+{/block}
