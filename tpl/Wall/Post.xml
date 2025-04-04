@@ -1,0 +1,34 @@
+{extends "../@layout.xml"}
+
+{block title}{_post}{/block}
+
+{block body}
+    <div class="header">
+        <a href="{$wallOwner->getURL()}">
+            {$wallOwner->getCanonicalName()}
+        </a>
+        »
+        <a href="/wall{$wallOwner->getId() * ($isWallOfGroup ? -1 : 1)}">
+            {_wall}
+        </a>
+        »
+        {_post}
+    </div>
+
+    <div class="tabs">
+        <a href="/wall{$post->getTargetWall()}">{_all_posts}</a>
+        <a href="/wall{$post->getTargetWall()}?type=owners">{$post->getTargetWall() < 0 ? tr("clubs_posts") : tr("users_posts", ovk_proc_strtr($wallOwner->getFirstName(), 20))}</a>
+        <a href="/wall{$post->getTargetWall()}?type=others">{_others_posts}</a>
+        <a class="activetab">{_post}</a>
+    </div>
+
+    {include "../components/post.xml", post => $post, forceNoCommentsLink => TRUE, forceNoDeleteLink => TRUE}
+    {include "../components/comments.xml",
+                 comments => $comments,
+                 count => $cCount,
+                 page => $cPage,
+                 model => "posts",
+                 parent => $post }
+    <hr/>
+    
+{/block}
