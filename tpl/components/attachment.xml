@@ -30,7 +30,7 @@
     {$attachment->getTitle()}
     </a>
 {else}
-    <span style="color:red;">{_attachment_only_for_pc}</span>
+    <span style="color:red;">{_mobile_attachment_only_for_pc}</span>
 {/if}
 
 {php $GLOBALS["_nesAttGloCou"] = NULL}
