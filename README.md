@@ -10,6 +10,5 @@ Mobile theme for OpenVK for dumbphones, PDAs and old devices at all. Uses old pd
 - [x] Audio
 - [x] Wall
 - [x] Post page
-- [ ] Settings
 - [x] News
 - [x] Language picker

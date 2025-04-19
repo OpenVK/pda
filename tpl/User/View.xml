@@ -99,7 +99,7 @@
             </div>
         </div>
         {if $user->getId() == $thisUser->getId()}
-        <div class="flexHeader">{_menu}</div>
+        <div class="flexHeader">{_mobile_menu}</div>
         <div class="profileMenu">
             <div class="menuItem">
                 <a href="/feed">
@@ -109,6 +109,16 @@
             <div class="menuItem">
                 <a href="/language">
                     {_select_language}
+                </a>
+            </div>
+            <div class="menuItem">
+                <a href="/settings/reset_theme?hash={urlencode($csrfToken)}">
+                    {_mobile_desktop_version}
+                </a>
+            </div>
+            <div class="menuItem">
+                <a href="/logout?hash={urlencode($csrfToken)}">
+                    {_mobile_log_out}
                 </a>
             </div>
         </div>
