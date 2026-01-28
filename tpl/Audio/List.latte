@@ -3,7 +3,7 @@
 {block title}{_audios}{/block}
 
 {block body}
-    {var act = $_GET["act"] ?? "friends"}
+    {var $act = $_GET["act"] ?? "friends"}
 
 
     <div class="header">
@@ -32,7 +32,7 @@
             "page"     => $page,
             "count"    => $audiosCount,
             "amount"   => sizeof($audios),
-            "perPage"  => $perPage ?? OPENVK_DEFAULT_PER_PAGE
+            "perPage"  => $perPage ?? \OPENVK_DEFAULT_PER_PAGE
         ]}
     </div>
 {/block}

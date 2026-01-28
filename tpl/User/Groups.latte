@@ -9,10 +9,10 @@
         <a href="/groups{$user->getId()}?act=managed" n:attr="class => ($admin ? 'activetab' : 'ki')">{_managed}</a>
     </div>
     <div class="pad">
-        {var iterator = $user->getClubs($page, $admin)}
-        {var count    = $user->getClubCount($admin)}
+        {var $iterator = $user->getClubs($page, $admin)}
+        {var $count    = $user->getClubCount($admin)}
 
-        {var data = is_array($iterator) ? $iterator : iterator_to_array($iterator)}
+        {var $data = is_array($iterator) ? $iterator : iterator_to_array($iterator)}
         
         {if sizeof($data) > 0}
             <div class="profileMenu">
@@ -29,7 +29,7 @@
             "page"     => $page,
             "count"    => $count,
             "amount"   => sizeof($data),
-            "perPage"  => $perPage ?? OPENVK_DEFAULT_PER_PAGE
+            "perPage"  => $perPage ?? \OPENVK_DEFAULT_PER_PAGE
         ]}
     </div>
 {/block}
