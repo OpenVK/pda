@@ -1,4 +1,4 @@
-{extends "../@layout.xml"}
+{extends "../@layout.latte"}
 
 {block title}{_post}{/block}
 
@@ -22,8 +22,8 @@
         <a class="activetab">{_post}</a>
     </div>
 
-    {include "../components/post.xml", post => $post, forceNoCommentsLink => TRUE, forceNoDeleteLink => TRUE}
-    {include "../components/comments.xml",
+    {include "../components/post.latte", post => $post, forceNoCommentsLink => TRUE, forceNoDeleteLink => TRUE}
+    {include "../components/comments.latte",
                  comments => $comments,
                  count => $cCount,
                  page => $cPage,

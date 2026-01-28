@@ -9,11 +9,11 @@
 
     {/if}
 {elseif $attachment instanceof \openvk\Web\Models\Entities\Post}
-    {php $GLOBALS["_nesAttGloCou"] = (isset($GLOBALS["_nesAttGloCou"]) ? $GLOBALS["_nesAttGloCou"] : 0) + 1}
-    {if $GLOBALS["_nesAttGloCou"] > 2}
+    {var $nestedLevel = ($nestedLevel ?? 0) + 1}
+    {if $nestedLevel > 2}
         <a href="/wall{$attachment->getPrettyId()}">{_open_post}</a>
     {else}
-        {include "post.xml", post => $attachment, compact => true}
+        {include "post.latte", post => $attachment, compact => true, nestedLevel => $nestedLevel}
     {/if}
 {elseif $attachment instanceof \openvk\Web\Models\Entities\Document}
     <br>
@@ -33,4 +33,4 @@
     <span style="color:red;">{_mobile_attachment_only_for_pc}</span>
 {/if}
 
-{php $GLOBALS["_nesAttGloCou"] = NULL}
+{php $nestedLevel = NULL}

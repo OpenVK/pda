@@ -38,7 +38,7 @@
                         
                         <div n:ifcontent class="attachments_b">
                             <div class="attachment" n:foreach="$post->getChildren() as $attachment" data-localized-nsfw-text="{_nsfw_warning}">
-                                {include "attachment.xml", attachment => $attachment}
+                                {include "attachment.latte", attachment => $attachment}
                             </div>
                         </div>
                     </div>
@@ -108,8 +108,8 @@
                                 <div class="heart"></div>
                                 <span class="likeCnt">{$post->getLikesCount()}</span>
                             </a> 
-                        {/ifset}-->
-                    </div>
+                        {/ifset}
+                    </div>-->
                 </div>
             </td>
         </tr>
