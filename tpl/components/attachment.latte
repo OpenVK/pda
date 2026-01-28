@@ -13,7 +13,7 @@
     {if $GLOBALS["_nesAttGloCou"] > 2}
         <a href="/wall{$attachment->getPrettyId()}">{_open_post}</a>
     {else}
-        {include "post.xml", post => $attachment, compact => true}
+        {include "post.latte", post => $attachment, compact => true}
     {/if}
 {elseif $attachment instanceof \openvk\Web\Models\Entities\Document}
     <br>

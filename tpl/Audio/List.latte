@@ -1,4 +1,4 @@
-{extends "../@layout.xml"}
+{extends "../@layout.latte"}
 
 {block title}{_audios}{/block}
 
@@ -28,7 +28,7 @@
         {else}
             {_no_data}
         {/if}
-        {include "../components/paginator.xml", conf => (object) [
+        {include "../components/paginator.latte", conf => (object) [
             "page"     => $page,
             "count"    => $audiosCount,
             "amount"   => sizeof($audios),

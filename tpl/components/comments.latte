@@ -8,11 +8,11 @@
 {if sizeof($comments) > 0}
     <div class='scroll_container'>
         <div class='scroll_node' n:foreach="$comments as $comment">
-            {include "comment.xml", comment => $comment}
+            {include "comment.latte", comment => $comment}
         </div>
     </div>
     <div style="margin-top: 11px;">
-        {include "paginator.xml", conf => (object) ["page" => $page, "count" => $count, "amount" => sizeof($comments), "perPage" => 10]}
+        {include "paginator.latte", conf => (object) ["page" => $page, "count" => $count, "amount" => sizeof($comments), "perPage" => 10]}
     </div>
 {else}
     {_comments_tip}

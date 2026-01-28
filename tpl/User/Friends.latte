@@ -1,4 +1,4 @@
-{extends "../@layout.xml"}
+{extends "../@layout.latte"}
 
 {block title}{$user->getCanonicalName()}{/block}
 
@@ -36,7 +36,7 @@
         {else}
             {_no_data}
         {/if}
-        {include "../components/paginator.xml", conf => (object) [
+        {include "../components/paginator.latte", conf => (object) [
             "page"     => $page,
             "count"    => $count,
             "amount"   => sizeof($data),
